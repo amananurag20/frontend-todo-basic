@@ -20,7 +20,7 @@ const App = () => {
   return (
     <div>
       <CreateTodo setTodos={setTodos} todos={todos}/>
-      <Todos todos={todos}/>
+      <Todos todos={todos} setTodos={setTodos}/>
     </div>
   )
 }
