@@ -10,7 +10,7 @@ const App = () => {
   const fetchTodos=async()=>{
     const response= await fetch("http://localhost:5000/todos");
     const data= await response.json();
-    setTodos(data.todos);  //infinite loop
+    setTodos(data.todos);  //10 data
   }
     
   useEffect(()=>{
@@ -19,7 +19,7 @@ const App = () => {
 
   return (
     <div>
-      <CreateTodo/>
+      <CreateTodo setTodos={setTodos} todos={todos}/>
       <Todos todos={todos}/>
     </div>
   )

@@ -1,29 +1,39 @@
+/* eslint-disable react/prop-types */
 import axios from "axios";
 import { useState } from "react";
 
-const CreateTodo = () => {
+const CreateTodo = ({setTodos, todos}) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
   const handleClick = async () => {
-    // const response=await fetch("http://localhost:5000/todo" ,{
-    //   method:"POST",
-    //   body:JSON.stringify({
-    //     title, //title:title
-    //     description:description
-    //   }),
-    //   headers:{
-    //     "Content-type":"application/json"
-    //   }
-    // });
 
-    // const data= await response.json();
+    try{
 
-    const data = await axios.post("http://localhost:5000/todo", {
-      title: title,
-      description: description,
-    });
-    console.log(data);
+      // const response=await fetch("http://localhost:5000/todo" ,{
+      //   method:"POST",
+      //   body:JSON.stringify({
+      //     title, //title:title
+      //     description:description
+      //   }),
+      //   headers:{
+      //     "Content-type":"application/json"
+      //   }
+      // });
+  
+      // const data= await response.json();
+       
+      const response = await axios.post("http://localhost:5000/todo", {
+        title: title,
+        description: description,
+      });
+      console.log(response.data.todo);
+      setTodos([...todos, response.data.todo])
+      setTitle("");
+      setDescription("");
+    }catch(e){
+       console.log(e);
+    }
   };
 
   return (
